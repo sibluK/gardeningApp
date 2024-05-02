@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Add event listener to the button
+
   document.getElementById('create-garden-button').addEventListener('click', function () {
     // Define the data for the new garden
     const gardenData = {

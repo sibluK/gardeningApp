@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             const userId = data.userId;
+            const username = data.username;
             localStorage.setItem('userId', userId);
+            localStorage.setItem('username', username)
             window.location.href = '../pages/user/signedin.html';
         })
         .catch(error => {
