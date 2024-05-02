@@ -1,0 +1,65 @@
+#garden-card-container {
+    margin: 70px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.garden-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    box-shadow: var(--shadow);
+    gap: 10px;
+}
+
+
+#create-new-garden-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    box-shadow: var(--shadow);
+}
+
+#plus-icon {
+    width: 100px;
+    fill: var(--button-color);
+    transition: 0.1s;
+
+}
+
+#plus-icon:hover {
+    fill: var(--button-hover-color);
+    cursor: pointer;
+}
+
+.garden-icon {
+    width: 150px;
+}
+
+.garden-card button {
+    font-family: var(--font-family);
+    font-size: 15px;
+    border: none;
+    background-color: inherit;
+    background-color: var(--button-color);
+    transition: 0.1s;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.garden-card button:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}
