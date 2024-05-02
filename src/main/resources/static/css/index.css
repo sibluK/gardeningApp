@@ -1,0 +1,86 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --font-family: 'Poppins', sans-serif;
+    --button-color: rgb(55, 225, 72);
+    --button-hover-color: rgb(45, 177, 58);
+    --shadow: 0px 10px 13px -5px rgba(0,0,0,0.1);
+  }
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 15px;
+}
+
+.main-page-quote {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 30px;
+}
+
+#landing-page-photo1 {
+    width: 350px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.main-page-offers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-page-offers h1 {
+    margin-top: 200px;
+    margin-bottom: 30px;
+}
+
+.main-page-quote {
+    padding-top: 100px;
+}
+
+.quote-word {
+    color: var(--button-color);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+    
+}
+
+.offer-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 3px black;
+    gap: 20px;
+
+}
+
+.offer-text {
+    text-align: center;
+    width: 150px;
+}
+
+
