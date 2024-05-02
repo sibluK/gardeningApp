@@ -60,6 +60,7 @@ public class UserController {
                 // Construct a response containing the user ID and the message
                 Map<String, Object> responseData = new HashMap<>();
                 responseData.put("userId", storedUser.getId());
+                responseData.put("username", storedUser.getUsername());
                 responseData.put("message", "Login successful");
                 return ResponseEntity.ok().body(responseData);
             } else {

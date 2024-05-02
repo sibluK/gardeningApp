@@ -56,17 +56,17 @@
     border-bottom: 0;
 }
 
-#sign-up-button {
+#sign-up-button, #sign-out-button {
     padding: 15px;
     border: 1px solid rgb(209, 195, 195);
     border-radius: 8px;
     transition: 0.1s;
 }
 
-#sign-up-button:hover {
+#sign-up-button:hover, #sign-out-button:hover {
     background-color: rgb(220, 215, 215);
 }
 
-#sign-in-button, #sign-up-button {
+#sign-in-button, #sign-up-button, #sign-out-button {
     box-shadow: var(--shadow)
 }

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const username = data.username;
             localStorage.setItem('userId', userId);
             localStorage.setItem('username', username)
-            window.location.href = '../pages/user/signedin.html';
+            window.location.href = '../pages/user/html/mainuser.html';
         })
         .catch(error => {
             console.error('Error:', error);
