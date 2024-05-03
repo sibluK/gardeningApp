@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     link.setAttribute('class', 'navigation-button');
     link.innerHTML = username;
 
-    // Create the <li> tag
     const listItem = document.createElement('li');
-    listItem.appendChild(link); // Append the <a> tag to the <li> tag
+    listItem.appendChild(link);
 
-    // Find the navigation menu and append the new <li> tag
     const navigation = document.querySelector('.navigation ul');
     navigation.appendChild(listItem);
 

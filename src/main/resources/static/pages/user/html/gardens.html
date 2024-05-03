@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/pages/user/css/gardens.css">
 </head>
 <body>
+
     <nav class="navigation">
         <a href="/pages/user/html/mainuser.html">
             <svg class="logo" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" id="garden-centre">
@@ -25,15 +26,106 @@
             <li><a href="/index.html" id="sign-out-button">Sign Out</a></li>
         </ul>
     </nav>
-    
-
-    <div id="garden-card-container">
-        <div id="create-new-garden-card">
-            <svg id="plus-icon" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" />
-            </svg>
+        
+    <div class="not-navigation-part">
+        <div id="garden-card-container">
+            <div id="create-new-garden-card">
+                <svg id="plus-icon" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" />
+                </svg>
+            </div>
         </div>
+
+
+        <div class="garden-creation-container">
+            <h3>Garden Creation</h3>
+            <form class="garden-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size" required>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="street">Street:</label>
+                    <input type="text" id="street" name="street" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+            </form>
+            <div class="button-container">
+                <button class="create-garden-button button">Create</button>
+                <button class="cancel-creation button">Cancel</button>
+            </div>
+        </div>
+
+        <div class="garden-manage-container">
+            <h3>Garden Management</h3>
+
+            <div class="garden-info-card-container">
+                <div class="garden-info-card tool-info-card">
+                    <h3>Tools</h3>
+                    <div class="added-tools">
+                        <h4>Added tools:</h4>
+                        <div class="tool-list">
+                            <div class="add-tool tool">
+                                <svg id="add-tool-icon" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-management">
+
+                    </div>
+                </div>
+                <div class="garden-info-card user-info-card">
+                    <h3>Users</h3>
+                </div>
+                <div class="garden-info-card plant-info-card">
+                    <h3>Plants</h3>
+                </div>
+                <div class="garden-info-card task-info-card">
+                    <h3>Tasks</h3>
+                </div>
+                <div class="garden-info-card material-info-card">
+                    <h3>Materials</h3>
+                </div>
+            </div>
+
+
+            <div class="manage-button-container">
+                <button class="manage-button">Save</button>
+                <button class="manage-button manage-cancel">Cancel</button>
+            </div>
+        </div>
+
+
     </div>
+
+
 
     <script src="/pages/user/js/mainuser.js"></script>
     <script src="/pages/user/js/navigation.js"></script>

@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => {
             if (!response.ok) {
+                alert("Incorrect username or password!");
                 throw new Error('Failed to sign in');
             }
             return response.json();

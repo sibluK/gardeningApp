@@ -47,11 +47,10 @@
     width: 150px;
 }
 
-.garden-card button {
+.button {
     font-family: var(--font-family);
     font-size: 15px;
     border: none;
-    background-color: inherit;
     background-color: var(--button-color);
     transition: 0.1s;
     padding: 10px;
@@ -59,7 +58,215 @@
     margin-top: 10px;
 }
 
-.garden-card button:hover {
+.button:hover {
     cursor: pointer;
     background-color: var(--button-hover-color);
+}
+
+.garden-creation-container {
+    border: 2px solid black;
+    height: 600px;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    background-color: white;
+    scale: 0;
+}
+
+
+.garden-form {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 3px; /* Adjust spacing between label and input */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.form-group select{
+    font-family: var(--font-family);
+}
+
+.garden-creation-container h3 {
+    text-align: center;
+}
+
+.garden-creation-container button {
+    width: 100px;
+    transition: 0.1s;
+    box-shadow: var(--shadow);
+}
+
+.garden-creation-container button:last-child {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+.garden-creation-container button:last-child:hover {
+    background-color: rgb(188, 42, 42);
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-bottom: 15px;
+}
+
+#description {
+    z-index: 1000;
+    max-width: 360px;
+    max-height: 80px;
+    font-family: var(--font-family);
+}
+
+
+.garden-manage-container {
+    border: 2px solid black;
+    height: 750px;
+    width: 1300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    background-color: white;
+    scale: 0;
+}
+
+.garden-manage-container h3 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.garden-info-card-container {
+    display: flex;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+.garden-info-card {
+
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    border:#ccc 2px solid;
+    padding: 10px;
+}
+
+
+.added-tools {
+
+    height: 230px;
+}
+
+.tool-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 230px;
+
+    width: fit-content;
+    gap: 6px;
+}
+
+.tool {
+    border: 1px solid black;
+    max-width: 100px;
+    overflow: hidden;
+    padding: 5px;
+    width: 100px;
+    border-radius: 8px;
+    transition: 0.1s;
+    background-color: white;
+}
+
+.tool:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.add-tool {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-tool-icon {
+    fill: var(--button-color);
+    width: 25px;
+    height: 25px;
+}
+
+.manage-button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-bottom: 10px;
+}
+
+.manage-button-container button {
+    font-family: var(--font-family);
+    font-size: 15px;
+    border: none;
+    background-color: var(--button-color);
+    transition: 0.1s;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100px;
+}
+
+.manage-button-container button:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}
+
+.manage-button-container button:last-child {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+.manage-button-container button:last-child:hover {
+    background-color: rgb(188, 42, 42);
 }
