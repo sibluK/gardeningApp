@@ -28,6 +28,7 @@
     </nav>
         
     <div class="not-navigation-part">
+
         <div id="garden-card-container">
             <div id="create-new-garden-card">
                 <svg id="plus-icon" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +83,8 @@
 
         <div class="garden-manage-container">
             <h3>Garden Management</h3>
-
             <div class="garden-info-card-container">
-                <div class="garden-info-card tool-info-card">
+                <div class="garden-info-card">
                     <h3>Tools</h3>
                     <div class="added-tools">
                         <h4>Added tools:</h4>
@@ -97,9 +97,9 @@
                         </div>
                     </div>
 
-                    <div class="tool-management">
+                    <!--<div class="tool-management">
 
-                    </div>
+                    </div> -->
                 </div>
                 <div class="garden-info-card user-info-card">
                     <h3>Users</h3>
@@ -120,7 +120,29 @@
                 <button class="manage-button">Save</button>
                 <button class="manage-button manage-cancel">Cancel</button>
             </div>
+
+            <div class="tool-window">
+                <h3>Steel hammer</h3>
+
+                <div class="tool-data">
+                    <h4>Name: <span class="tool-text tool-name"></span></h4>
+                    <h4>Category: <span class="tool-text tool-category"></span></h4>
+                    <h4>Availability: <span class="tool-text tool-availability"></span></h4>
+                    <h4>Last Used: <span class="tool-text tool-last-used"></span></h4>
+                    <h4>Description: <span class="tool-text tool-description"></span></h4>
+                </div>
+
+                <div class="tool-window-button-container">
+                    <button class="tool-save-button tool-window-button">Save</button>
+                    <button class="tool-delete-button tool-window-button">Delete</button>
+                </div>
+
+
+            </div>
+
         </div>
+
+
 
 
     </div>

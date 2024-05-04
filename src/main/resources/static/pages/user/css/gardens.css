@@ -189,7 +189,6 @@ input[type="password"] {
 
 
 .added-tools {
-
     height: 230px;
 }
 
@@ -231,6 +230,72 @@ input[type="password"] {
     width: 25px;
     height: 25px;
 }
+
+
+.tool-window {
+    width: 300px;
+    height: 350px;
+    background-color: white;
+    border: #ccc 2px solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    padding: 10px;
+    scale: 0;
+}
+
+.tool-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.tool-text {
+    font-weight: 500;
+}
+
+
+.tool-window-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.tool-window-button {
+    padding: 5px;
+    width: 50px;
+    box-shadow: var(--shadow);
+    border: none;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    transition: 0.1s;
+    margin-top: 10px;
+}
+
+.tool-save-button {
+    background-color: var(--button-color);
+}
+.tool-save-button:hover {
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+}
+
+.tool-delete-button {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+.tool-delete-button:hover {
+    background-color: rgb(188, 42, 42);
+    cursor: pointer;
+}
+
+
 
 .manage-button-container {
     display: flex;

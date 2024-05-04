@@ -128,6 +128,15 @@ function fetchAndDisplayGarden(gardenId) {
 
 const addedToolContainer = document.querySelector('.tool-list');
 const lastChild = addedToolContainer.lastElementChild;
+const toolWindow = document.querySelector('.tool-window');
+const toolNameSpan = document.querySelector('.tool-name');
+const toolCategorySpan = document.querySelector('.tool-category');
+const toolAvailabilitySpan = document.querySelector('.tool-availability');
+const toolLastUsedSpan = document.querySelector('.tool-last-used');
+const toolDescriptionSpan = document.querySelector('.tool-description');
+document.querySelector('.tool-save-button').addEventListener('click', function() {
+    toolWindow.style.scale = 0;
+})
 
 function fetchAndDisplayToolData(gardenId) {
     addedToolContainer.innerHTML = '';
@@ -147,6 +156,21 @@ function fetchAndDisplayToolData(gardenId) {
 
                 addedToolContainer.append(lastChild);
                 addedToolContainer.insertBefore(toolDiv, lastChild);
+
+                toolDiv.addEventListener('click', function() {
+                    toolWindow.style.scale = 1;
+                    toolNameSpan.innerText = '';
+                    toolAvailabilitySpan.innerHTML = '';
+                    toolCategorySpan.innerHTML = '';
+                    toolDescriptionSpan.innerHTML = '';
+                    toolLastUsedSpan.innerHTML = '';
+
+                    toolNameSpan.innerText = tool.name;
+                    toolCategorySpan.innerText = tool.category.name;
+                    toolAvailabilitySpan.innerText = tool.availability.name;
+                    toolLastUsedSpan.innerText = tool.lastUsedDate;
+                    toolDescriptionSpan.innerText = tool.description;
+                })
 
             })
         })
