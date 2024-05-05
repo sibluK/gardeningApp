@@ -56,9 +56,30 @@
                 <div id="second-column">
                     <div id="garden-tool-addition-wrapper">
                         <h4>Add Tool:</h4>
+                        <div class="tool-input-form">
+                            <h5>Name: <input id="tool-name-input"></input></h5>
+                        </div>
+                        <div class="tool-input-form">
+                            <h5>Category:
+                                <select id="tool-category-selection">
+
+                                </select>
+                            </h5>
+                        </div>
+                        <div class="tool-input-form">
+                            <h5>Description: <textarea id="description-text-area"></textarea></h5>
+                        </div>
+                        <button id="add-tool-button">Add</button>
                     </div>
                     <div id="garden-selected-tool-info">
                         <h4>Tool Information:</h4>
+                        <div id="selected-tool-info-wrapper">
+                            <h5>Name: <span id="tool-name"></span></h5>
+                            <h5>Category: <span id="tool-category"></span></h5>
+                            <h5>Availability: <span id="tool-availability"></span></h5>
+                            <h5>Last used: <span id="tool-last-used-date"></span></h5>
+                            <h5>Description: <span id="tool-description"></span></h5>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
+* {
+    font-family: var(--font-family);
+}
+
 #main-content-wrapper {
-    border: 1px solid red;
     margin: 30px;
     margin-left: 100px;
     margin-right: 100px;
@@ -12,7 +15,7 @@
     width: 500px;
     height: 550px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     padding: 20px;
 }
 
@@ -46,7 +49,7 @@
 }
 
 #garden-tool-display-wrapper, #garden-tool-addition-wrapper, #garden-selected-tool-info {
-    border: 1px solid black;
+    border: 1px solid rgb(134, 133, 133);
     width: 50%;
     height: 450px;
     border-radius: 5px;
@@ -56,10 +59,12 @@
 #garden-tool-addition-wrapper {
     height: 50%;
     width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #garden-tool-dropbox {
-
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -69,18 +74,42 @@
 
 .garden-dropbox-tool {
     width: 80px;
-    height: 20px;
-    border: 1px solid var(--button-color);
+    height: 22px;
+    border: 2px solid var(--button-hover-color);
     border-radius: 3px;
     font-size: 12px;
     padding-left: 5px;
     padding-right: 5px;
-    overflow-x:hidden;
+    overflow-x: hidden;
+    transition: 0.1s;
+}
+
+.garden-dropbox-tool:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
 }
 
 #garden-selected-tool-info {
     width: auto;
     height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#selected-tool-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#selected-tool-info-wrapper span {
+    font-weight: 400;
+}
+
+#selected-tool-info-wrapper h5:last-child {
+    max-height: 50px;
+    overflow-y: scroll;
 }
 
 #second-column {
@@ -89,3 +118,32 @@
     gap: 10px;
     width: 250px;
 }
+
+.tool-input-form input {
+    width: 160px;
+    font-size: 13px;
+}
+
+#add-tool-button {
+    border: none;
+    border-radius: 3px;
+    padding: 3px;
+    background-color: var(--button-color);
+    box-shadow: var(--shadow);
+}
+
+#add-tool-button:hover {
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+}
+
+.tool-input-form textarea {
+    max-height: 40px;
+    max-width: 200px;
+    font-size: 12px;
+}
+
+
+
+
+

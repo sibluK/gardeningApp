@@ -331,13 +331,6 @@ input[type="password"] {
     transform: translate(-50%);
 }
 
-.add-tool-button {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    transition: 0.1s;
-}
-
 .add-tool-add-button {
     background-color: var(--button-color);
 }
