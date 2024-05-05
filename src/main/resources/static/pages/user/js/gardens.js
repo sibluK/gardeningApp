@@ -1,6 +1,10 @@
 const gardenCreationWindow = document.querySelector('.garden-creation-container');
 const userId = localStorage.getItem('userId');
 
+gardenCreationWindow.querySelector('.cancel-creation').addEventListener('click', function () {
+    gardenCreationWindow.style.scale = 0;
+});
+
 gardenCreationWindow.querySelector('.create-garden-button').addEventListener('click', function() {
     const formData = {
         name: document.getElementById('name').value,

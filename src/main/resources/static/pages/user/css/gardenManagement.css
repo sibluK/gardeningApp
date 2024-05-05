@@ -9,8 +9,83 @@
 }
 
 .garden-data-wrapper {
-    width: 600px;
-    height: 500px;
+    width: 500px;
+    height: 550px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    padding: 20px;
+}
+
+#garden-information-wrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#garden-information-wrapper span {
+    font-weight: 400;
+}
+
+#garden-information-wrapper h4:last-child {
+    max-height: 130px;
+    overflow-y: scroll;
+}
+
+#garden-tools-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#garden-tool-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+}
+
+#garden-tool-display-wrapper, #garden-tool-addition-wrapper, #garden-selected-tool-info {
+    border: 1px solid black;
+    width: 50%;
+    height: 450px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#garden-tool-addition-wrapper {
+    height: 50%;
+    width: auto;
+}
+
+#garden-tool-dropbox {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: calc(100% - 20px);
+    gap: 3px;
+}
+
+.garden-dropbox-tool {
+    width: 80px;
+    height: 20px;
+    border: 1px solid var(--button-color);
+    border-radius: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow-x:hidden;
+}
+
+#garden-selected-tool-info {
+    width: auto;
+    height: 50%;
+}
+
+#second-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
 }
