@@ -88,7 +88,7 @@ public class GardenController {
         }
     }
 
-    @GetMapping(path = "/manage/{gardenId}")
+    @GetMapping(path = "/{gardenId}")
     public ResponseEntity<?> getGardenById(@PathVariable Long gardenId) {
         try {
             Garden garden = gardenRepository.findById(gardenId)

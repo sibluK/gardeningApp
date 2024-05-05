@@ -29,15 +29,10 @@
         
     <div class="not-navigation-part">
 
-        <div id="garden-card-container">
-            <div id="create-new-garden-card">
-                <svg id="plus-icon" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z" />
-                </svg>
-            </div>
-        </div>
+        <!--Container for the fetched garden cards-->
+        <div id="garden-card-container"></div>
 
-
+        <!--Window for garden creation-->
         <div class="garden-creation-container">
             <h3>Garden Creation</h3>
             <form class="garden-form">
@@ -45,7 +40,6 @@
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
-
                 <div class="form-group">
                     <label for="size">Size:</label>
                     <select id="size" name="size" required>
@@ -54,22 +48,18 @@
                         <option value="Large">Large</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <input type="text" id="country" name="country" required>
                 </div>
-
                 <div class="form-group">
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" required>
                 </div>
-
                 <div class="form-group">
                     <label for="street">Street:</label>
                     <input type="text" id="street" name="street" required>
                 </div>
-
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <textarea id="description" name="description" required></textarea>
@@ -81,8 +71,11 @@
             </div>
         </div>
 
+        <!--Window for garden management-->
         <div class="garden-manage-container">
+
             <h3>Garden Management</h3>
+
             <div class="garden-info-card-container">
                 <div class="garden-info-card">
                     <h3>Tools</h3>
@@ -96,10 +89,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--<div class="tool-management">
-
-                    </div> -->
                 </div>
                 <div class="garden-info-card user-info-card">
                     <h3>Users</h3>
@@ -114,16 +103,13 @@
                     <h3>Materials</h3>
                 </div>
             </div>
-
-
             <div class="manage-button-container">
                 <button class="manage-button">Save</button>
                 <button class="manage-button manage-cancel">Cancel</button>
             </div>
 
+            <!--Window displaying the tool data-->
             <div class="tool-window">
-                <h3>Steel hammer</h3>
-
                 <div class="tool-data">
                     <h4>Name: <span class="tool-text tool-name"></span></h4>
                     <h4>Category: <span class="tool-text tool-category"></span></h4>
@@ -131,25 +117,41 @@
                     <h4>Last Used: <span class="tool-text tool-last-used"></span></h4>
                     <h4>Description: <span class="tool-text tool-description"></span></h4>
                 </div>
-
                 <div class="tool-window-button-container">
                     <button class="tool-save-button tool-window-button">Save</button>
                     <button class="tool-delete-button tool-window-button">Delete</button>
                 </div>
-
-
             </div>
+            <!--Window for adding a tool-->
+            <div class="tool-add-window">
+                <h3>Add a Tool</h3>
 
+                <form class="add-tool-form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="add-tool-name" name="name" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="add-tool-category" name="category" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="add-tool-description" name="description" required></textarea>
+                    </div>
+                </form>
+                <div class="add-tool-window-button-container">
+                    <button class="add-tool-button add-tool-add-button">Add</button>
+                    <button class="add-tool-button add-tool-cancel-button">Cancel</button>
+                </div>
+            </div>
         </div>
-
-
-
-
     </div>
 
-
-
-    <script src="/pages/user/js/mainuser.js"></script>
     <script src="/pages/user/js/navigation.js"></script>
     <script src="/pages/user/js/gardens.js"></script>
 </body>

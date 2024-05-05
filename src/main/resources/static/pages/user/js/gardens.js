@@ -1,20 +1,7 @@
 const gardenCreationWindow = document.querySelector('.garden-creation-container');
-document.getElementById('plus-icon').addEventListener('click', function (event) {
-    gardenCreationWindow.style.scale = 1;
-});
-document.querySelector('.cancel-creation').addEventListener('click', function () {
-    gardenCreationWindow.style.scale = 0;
-});
+const userId = localStorage.getItem('userId');
 
-
-const gardenManageContainer = document.querySelector('.garden-manage-container');
-
-document.querySelector('.manage-cancel').addEventListener('click', function () {
-    gardenManageContainer.style.scale = 0;
-});
-
-document.querySelector('.create-garden-button').addEventListener('click', function() {
-
+gardenCreationWindow.querySelector('.create-garden-button').addEventListener('click', function() {
     const formData = {
         name: document.getElementById('name').value,
         size: document.getElementById('size').value,
@@ -36,7 +23,6 @@ document.querySelector('.create-garden-button').addEventListener('click', functi
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        alert("Garden created successfully!");
         window.location.reload();
         return response.json();
     })
@@ -49,9 +35,7 @@ document.querySelector('.create-garden-button').addEventListener('click', functi
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const userId = localStorage.getItem('userId');
-    const cardContainer = document.getElementById('garden-card-container');
-
+    //On page load fetching the gardens of the user
     fetch(`/garden/gardens?userId=${userId}`)
         .then(response => {
             if (!response.ok) {
@@ -60,10 +44,26 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(gardens => {
+            //Creating and appending the newGardenCard to the garden card container
+            const cardContainer = document.getElementById('garden-card-container');
+            const newGardenCard = createNewGardenCardWithPlusIcon();
+            cardContainer.appendChild(newGardenCard)
+
+            //Getting the add garden card button and on click displaying the
+            //garden creation window
+            const addNewGardenButton = newGardenCard.querySelector('#plus-icon')
+            addNewGardenButton.addEventListener('click', function () {
+                gardenCreationWindow.style.scale = 1;
+
+            });
+
+            //Looping through the gardens and creating a card for each one
             gardens.forEach(garden => {
+                //Creating the card
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('garden-card');
 
+                //Creating the svg
                 const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                 svg.setAttribute('class', 'garden-icon');
                 svg.setAttribute('fill', '#000000');
@@ -82,22 +82,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 '-2.6L18.1,36.7z M6,83v-3h14h12h20h12h30v3H6z');
                 svg.appendChild(path);
 
+                //Creating the name of the garden
                 const heading = document.createElement('h3');
                 heading.textContent = garden.name;
 
+                //Creating the button for managing the garden
                 const button = document.createElement('button');
                 button.textContent = 'Manage';
                 button.setAttribute('class', 'button');
 
+                //Appending the svg, heading and button elements to the garden card
                 cardDiv.appendChild(svg);
                 cardDiv.appendChild(heading);
                 cardDiv.appendChild(button);
 
-                cardContainer.insertBefore(cardDiv, cardContainer.firstChild);
+                //Inserting the newly created garden card before the addGardenCard
+                cardContainer.insertBefore(cardDiv, newGardenCard);
 
+                //The manage button listens for clicks 
                 button.addEventListener('click', function() {
-                    gardenManageContainer.style.scale = 1;
-                    fetchAndDisplayGarden(garden.id);
+                    window.location.assign(`/pages/user/html/gardenManagement.html?gardenId=${garden.id}`);
                 });
             });
         })
@@ -106,6 +110,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
+function createNewGardenCardWithPlusIcon() {
+    // Create the div element
+    const createNewGardenCard = document.createElement('div');
+    createNewGardenCard.id = 'create-new-garden-card';
+
+    // Create the SVG element
+    const plusIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    plusIcon.setAttribute('id', 'plus-icon');
+    plusIcon.setAttribute('viewBox', '0 0 24 24');
+    plusIcon.setAttribute('fill', '');
+
+    // Create the path element inside the SVG
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill-rule', 'evenodd');
+    path.setAttribute('clip-rule', 'evenodd');
+    path.setAttribute('d', 'M12 4C12.5523 4 13 4.44772 13 5V11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H13V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V13H5C4.44772 13 4 12.5523 4 12C4 11.4477 4.44772 11 5 11H11V5C11 4.44772 11.4477 4 12 4Z');
+
+    // Append the path element to the SVG element
+    plusIcon.appendChild(path);
+
+    // Append the SVG element to the div element
+    createNewGardenCard.appendChild(plusIcon);
+
+    // Return the created div element
+    return createNewGardenCard;
+}
+
+///////////////////////////////////I GARDENMANAGEMENT.JS//////////////////////
 function fetchAndDisplayGarden(gardenId) {
     fetch(`/garden/manage/${gardenId}`)
         .then(response => {
@@ -116,7 +148,6 @@ function fetchAndDisplayGarden(gardenId) {
         })
         .then(garden => {
             console.log('Garden:', garden);
-
             fetchAndDisplayToolData(gardenId);
 
         })
@@ -137,9 +168,14 @@ const toolDescriptionSpan = document.querySelector('.tool-description');
 document.querySelector('.tool-save-button').addEventListener('click', function() {
     toolWindow.style.scale = 0;
 })
+const addToolWindow = document.querySelector('.tool-add-window');
+document.querySelector('.add-tool-cancel-button').addEventListener('click', function () {
+    addToolWindow.style.scale = 0;
+})
+
+const addToolButton = document.querySelector('.add-tool-add-button');
 
 function fetchAndDisplayToolData(gardenId) {
-    addedToolContainer.innerHTML = '';
     fetch(`/tool/${gardenId}`)
         .then(response => {
             if(!response.ok) {
@@ -155,6 +191,63 @@ function fetchAndDisplayToolData(gardenId) {
                 toolDiv.innerText = tool.name;
 
                 addedToolContainer.append(lastChild);
+
+                lastChild.addEventListener('click', function() {
+                    addToolWindow.style.scale = 1;
+                    
+                    const addToolCategorySelect = document.getElementById('add-tool-category');
+                    addToolCategorySelect.innerHTML = '';
+                        fetch('/category/all')
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to fetch categories');
+                                }
+                                return response.json();
+                            })
+                            .then(categories => {
+                                const categorySelect = document.getElementById('add-tool-category');
+                                categories.forEach(category => {
+                                    const option = document.createElement('option');
+                                    option.value = category.id;
+                                    option.textContent = category.name;
+                                    categorySelect.appendChild(option);
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error fetching categories:', error);
+                            });
+
+                    addToolButton.addEventListener('click', function() {
+                        const formData = {
+                            name: document.getElementById('add-tool-name').value,
+                            categoryId: document.getElementById('add-tool-category').value,
+                            description: document.getElementById('add-tool-description').value,
+                            availabilityId: 1,
+                            lastUsedDate: new Date().toISOString(),
+                            gardenId: gardenId
+                        };
+
+                            fetch('/tool/add', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(formData)
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to add tool');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('Tool added successfully:', data);
+                            })
+                            .catch(error => {
+                                console.error('Error adding tool:', error);
+                            })
+                    });
+                })
                 addedToolContainer.insertBefore(toolDiv, lastChild);
 
                 toolDiv.addEventListener('click', function() {
@@ -171,10 +264,6 @@ function fetchAndDisplayToolData(gardenId) {
                     toolLastUsedSpan.innerText = tool.lastUsedDate;
                     toolDescriptionSpan.innerText = tool.description;
                 })
-
             })
         })
 }
-
-
-//SUKURTI fetchAndDisplay pvz for user, materials, tasks

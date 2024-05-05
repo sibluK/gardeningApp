@@ -145,7 +145,6 @@ input[type="password"] {
     font-family: var(--font-family);
 }
 
-
 .garden-manage-container {
     border: 2px solid black;
     height: 750px;
@@ -295,7 +294,68 @@ input[type="password"] {
     cursor: pointer;
 }
 
+.tool-add-window {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border: #ccc 2px solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    padding: 10px;
+    scale: 0;
+}
 
+#add-tool-description {
+    max-width: 280px;
+    max-height: 90px;
+}
+
+.add-tool-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-tool-window-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px;
+    bottom: 0;
+    padding-bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.add-tool-button {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    transition: 0.1s;
+}
+
+.add-tool-add-button {
+    background-color: var(--button-color);
+}
+
+.add-tool-add-button:hover {
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+}
+
+.add-tool-cancel-button {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+.add-tool-cancel-button:hover {
+    background-color: rgb(188, 42, 42);;
+    cursor: pointer;
+}
 
 .manage-button-container {
     display: flex;
