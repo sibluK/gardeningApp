@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     DisplayGardenData();
     DisplayTools();
     DisplayUsers();
+    DisplayMaterials();
     DisplayCategories();
 });
 
@@ -39,16 +40,17 @@ document.getElementById('add-tool-button').addEventListener('click', function ()
 document.getElementById('remove-tool-button').addEventListener('click', function() {
     const formData = {
         gardenId: gardenId,
-        username: document.getElementById('user-name').innerText
+        toolId: document.getElementById('tool-id').innerText
     };
 
     const jsonData = JSON.stringify(formData);
 
-    fetchRemoveUser('/garden/user/remove', 'POST', {
+    fetchRemoveTool('/tool/remove', 'POST', {
         'Content-Type': 'application/json'
     }, jsonData)
     .then(data => {
-        DisplayUsers();
+        refreshSelectedToolInfo()
+        DisplayTools();
     })
     .catch(error => {
         console.error('Error removing user:', error);
@@ -87,12 +89,113 @@ document.getElementById('remove-user-button').addEventListener('click', function
         'Content-Type': 'application/json'
     }, jsonData)
     .then(data => {
+        refreshSelectedUserInfo();
         DisplayUsers();
     })
     .catch(error => {
         console.error('Error removing user:', error);
     });
-})
+});
+
+document.getElementById('add-material-button').addEventListener('click', function() {
+    const formData = {
+        name: document.getElementById('material-name-input').value,
+        type: document.getElementById('material-type-selection').value,
+        quantity: document.getElementById('material-quantity-input').value,
+        unit: document.getElementById('material-unit-selection').value,
+        expirationDate: document.getElementById('material-expiration-date-input').value,
+        description: document.getElementById('material-description-input').value,
+        gardenId: gardenId
+    };
+
+    const jsonData = JSON.stringify(formData);
+
+    fetchAssignMaterial('/material/add', 'POST', {
+        'Content-Type': 'application/json'
+    }, jsonData)
+    .then(data => {
+        document.getElementById('material-name-input').value = '';
+        document.getElementById('material-quantity-input').value = '';
+        document.getElementById('material-description-input').value = '';
+        DisplayMaterials();
+    })
+    .catch(error => {
+        console.error('Error assigning material:', error);
+    });
+});
+
+document.getElementById('remove-material-button').addEventListener('click', function() {
+    const formData = {
+        gardenId: gardenId,
+        materialId: document.getElementById('material-id').innerText
+    };
+
+    const jsonData = JSON.stringify(formData);
+
+    fetchRemoveMaterial('/material/remove', 'POST', {
+        'Content-Type': 'application/json'
+    }, jsonData)
+    .then(data => {
+        refreshSelectedMaterialInfo();
+        DisplayMaterials();
+    })
+    .catch(error => {
+        console.error('Error removing material:', error);
+    });
+});
+
+
+function refreshSelectedToolInfo() {
+    document.getElementById('tool-id').innerText = '';
+    document.getElementById('tool-name').innerText = '';
+    document.getElementById('tool-category').innerText = '';
+    document.getElementById('tool-availability').innerText = '';
+    document.getElementById('tool-last-used-date').innerText = '';
+    document.getElementById('tool-description').innerText = '';
+}
+
+function refreshSelectedUserInfo() {
+    document.getElementById('user-name').innerText = '';
+    document.getElementById('user-first-name').innerText = '';
+    document.getElementById('user-last-name').innerText = '';
+    document.getElementById('user-email').innerText = '';
+}
+
+function refreshSelectedMaterialInfo() {
+    document.getElementById('material-name').innerText = '';
+    document.getElementById('material-type').innerText = '';
+    document.getElementById('material-quantity').innerText = '';
+    document.getElementById('material-unit').innerText = '';
+    document.getElementById('material-expiration-date').innerText = '';
+    document.getElementById('material-description').innerText = '';
+}
+
+function DisplayMaterials() {
+    fetchAssignedMaterials(gardenId)
+    .then(materials => {
+        console.log(materials);
+
+        const materialDropbox = document.getElementById('garden-material-dropbox');
+        materialDropbox.innerHTML = '';
+
+        materials.forEach(material => {
+            const materialDiv = document.createElement('div');
+            materialDiv.setAttribute('class', 'garden-dropbox-material');
+            materialDiv.innerText = material.name;
+            materialDropbox.appendChild(materialDiv);
+
+            materialDiv.addEventListener('click', function() {
+                document.getElementById('material-id').innerText = material.id;
+                document.getElementById('material-name').innerText = material.name;
+                document.getElementById('material-type').innerText = material.type;
+                document.getElementById('material-quantity').innerText = material.quantity;
+                document.getElementById('material-unit').innerText = material.unit;
+                document.getElementById('material-expiration-date').innerText = material.expirationDate;
+                document.getElementById('material-description').innerText = material.description;
+            });
+        });
+    })
+}
 
 function DisplayUsers() {
     fetchAssignedUsers(gardenId)
@@ -198,6 +301,28 @@ function fetchAddTool(url, method, headers, body) {
     });
 }
 
+function fetchRemoveTool(url, method, headers, body) {
+    return fetch(url, {
+        method: method,
+        headers: headers,
+        body: body
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Tool removed from garden:', data)
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        throw error;
+    });
+}
+
 function fetchAssignUser(url, method, headers, body) {
     return fetch(url, {
         method: method,
@@ -238,6 +363,46 @@ function fetchRemoveUser(url, method, headers, body) {
     });
 }
 
+function fetchAssignMaterial(url, method, headers, body) {
+    return fetch(url, {
+        method: method,
+        headers: headers,
+        body: body
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        throw error;
+    });
+}
+
+function fetchRemoveMaterial(url, method, headers, body) {
+    return fetch(url, {
+        method: method,
+        headers: headers,
+        body: body
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Material removed from garden:', data)
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        throw error;
+    });
+}
+
 function fetchGarden(gardenId) {
     return fetch(`/garden/${gardenId}`)
         .then(response => {
@@ -268,7 +433,7 @@ function fetchCategories() {
     return fetch('/category/all')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to fetch categories');
+                throw new Error('Failed to fetch tool categories');
             }
             return response.json();
         })
@@ -282,7 +447,21 @@ function fetchAssignedUsers(gardenId) {
         .then(response => {
             if(!response.ok) {
 
-                throw new Error('Failed to fetch users');
+                throw new Error('Failed to fetch garden users');
+            }
+            return response.json();
+        })
+        .then(users => {
+            return users;
+        });
+}
+
+function fetchAssignedMaterials(gardenId) {
+    return fetch(`/material/${gardenId}`)
+        .then(response => {
+            if(!response.ok) {
+
+                throw new Error('Failed to fetch garden materials');
             }
             return response.json();
         })

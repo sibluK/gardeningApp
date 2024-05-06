@@ -2,7 +2,7 @@ package lt.viko.eif.nkulbis.gardeningApp.requests;
 
 import java.util.Date;
 
-public class ToolRequest {
+public class AddToolRequest {
     private String name;
     private Long categoryId;
     private Long availabilityId;

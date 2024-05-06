@@ -8,7 +8,7 @@ import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenRepository;
 import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenUsersRepository;
 import lt.viko.eif.nkulbis.gardeningApp.repositories.IUserRepository;
 import lt.viko.eif.nkulbis.gardeningApp.requests.AssignOrRemoveUserRequest;
-import lt.viko.eif.nkulbis.gardeningApp.requests.GardenRequest;
+import lt.viko.eif.nkulbis.gardeningApp.requests.CreateGardenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class GardenController {
     private IGardenUsersRepository gardenUsersRepository;
 
     @PostMapping(path = "/create")
-    public ResponseEntity<?> createNewGarden(@RequestBody GardenRequest request) {
+    public ResponseEntity<?> createNewGarden(@RequestBody CreateGardenRequest request) {
         try {
             Garden garden = new Garden();
             garden.setName(request.getName());

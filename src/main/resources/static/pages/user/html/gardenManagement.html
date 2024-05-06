@@ -41,7 +41,7 @@
             <h4>Description: <span id="garden-description"></span></h4>
         </div>
         <div id="garden-tools-wrapper" class="garden-data-wrapper">
-            <h2>Garden Tools</h2>
+            <h2>Tools</h2>
 
             <div id="garden-tool-info-wrapper">
                 <div id="garden-tool-display-wrapper">
@@ -73,7 +73,7 @@
                     <div id="garden-selected-tool-info">
                         <h4>Tool Information:</h4>
                         <div id="selected-tool-info-wrapper">
-                            <h5 id="tool-id">asdas</h5>
+                            <h5 id="tool-id"></h5>
                             <h5>Name: <span id="tool-name"></span></h5>
                             <h5>Category: <span id="tool-category"></span></h5>
                             <h5>Availability: <span id="tool-availability"></span></h5>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <div id="garden-users-wrapper" class="garden-data-wrapper">
-            <h2>Garden Users</h2>
+            <h2>Users</h2>
 
             <div id="garden-user-info-wrapper">
                 <div id="garden-user-display-wrapper">
@@ -119,7 +119,81 @@
             </div>
         </div>
         <div id="garden-materials-wrapper" class="garden-data-wrapper">
+            <h2>Materials</h2>
 
+            <div id="garden-material-info-wrapper">
+                <div id="garden-material-display-wrapper">
+                    <h4>Assigned Materials: </h4>
+                    <div id="garden-material-dropbox">
+                        <div class="garden-dropbox-material">Material</div>
+                        <div class="garden-dropbox-material">Material</div>
+                        <div class="garden-dropbox-material">Material</div>
+                    </div>
+                </div>
+
+                <div id="second-column-materials">
+                    <div id="garden-material-addition-wrapper">
+                        <h4>Add Material: </h4>
+                        <div class="input-form">
+                            <h5>Name: <input id="material-name-input"></input></h5>
+                        </div>
+                        <div class="input-form">
+                            <h5>Type: 
+                                <select id="material-type-selection">
+                                    <option value="pest-control">Pest Control</option>
+                                    <option value="decorations">Decoration</option>
+                                    <option value="structures">Structures</option>
+                                    <option value="containers">Containers and Pots</option>
+                                    <option value="soil">Soil and Amendments</option>
+                                </select>
+                            </h5>
+                        </div>
+                        <div class="input-form">
+                            <h5>Quantity: <input id="material-quantity-input"></input></h5>
+                        </div>
+                        <div class="input-form">
+                            <h5>Unit: 
+                                <select id="material-unit-selection">
+                                    <option value="Tons">Tons</option>
+                                    <option value="Kilograms">Kilograms</option>
+                                    <option value="Grams">Grams</option>
+                                    <option value="Liters">Liters</option>
+                                    <option value="Milliliters">Milliliters</option>
+                                    <option value="Cubic meters">Cubic meters</option>
+                                    <option value="Cubic centimeters">Cubic centimeters</option>
+                                    <option value="Square meters">Square meters</option>
+                                    <option value="Square centimeters">Square centimeters</option>
+                                    <option value="Meters">Meters</option>
+                                    <option value="Centimeters">Centimeters</option>
+                                    <option value="Non measurable">Non measurable</option>
+                                </select>
+                            </h5>
+                        </div>
+                        <div class="input-form">
+                            <h5>Expiration Date: 
+                                <input type="date" id="material-expiration-date-input"></input>
+                            </h5>
+                        </div>
+                        <div class="input-form">
+                            <h5>Description: <textarea id="material-description-input"></textarea></h5>
+                        </div>
+                        <button id="add-material-button">Add</button>
+                    </div>
+                    <div id="garden-selected-material-info">
+                        <h4>Material Information: </h4>
+                        <div id="selected-material-info-wrapper">
+                            <h5 id="material-id"></h5>
+                            <h5>Name: <span id="material-name"></span></h5>
+                            <h5>Type: <span id="material-type"></span></h5>
+                            <h5>Quantity: <span id="material-quantity"></span></h5>
+                            <h5>Unit: <span id="material-unit"></span></h5>
+                            <h5>Expiration date: <span id="material-expiration-date"></span></h5>
+                            <h5>Description: <span id="material-description"></span></h5>
+                        </div>
+                        <button id="remove-material-button">Remove</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="garden-tasks-wrapper" class="garden-data-wrapper">
 

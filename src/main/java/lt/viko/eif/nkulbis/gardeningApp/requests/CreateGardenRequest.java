@@ -1,6 +1,6 @@
 package lt.viko.eif.nkulbis.gardeningApp.requests;
 
-public class GardenRequest {
+public class CreateGardenRequest {
     private String name;
     private String size;
     private String country;

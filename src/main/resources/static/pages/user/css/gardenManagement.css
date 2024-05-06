@@ -13,10 +13,11 @@
 
 .garden-data-wrapper {
     width: 500px;
-    height: 550px;
+    height: 600px;
     border-radius: 10px;
     border: 1px solid black;
     padding: 20px;
+    box-shadow: var(--shadow);
 }
 
 #garden-information-wrapper {
@@ -24,6 +25,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    
 }
 
 #garden-information-wrapper span {
@@ -35,36 +37,47 @@
     overflow-y: scroll;
 }
 
-#garden-tools-wrapper, #garden-users-wrapper {
+#garden-tools-wrapper,
+#garden-users-wrapper,
+#garden-materials-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-#garden-tool-info-wrapper, #garden-user-info-wrapper {
+#garden-tool-info-wrapper,
+#garden-user-info-wrapper,
+#garden-material-info-wrapper {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    height: 100%;
 }
 
 #garden-tool-display-wrapper, #garden-tool-addition-wrapper, #garden-selected-tool-info,
-#garden-user-display-wrapper, #garden-user-addition-wrapper, #garden-selected-user-info {
+#garden-user-display-wrapper, #garden-user-addition-wrapper, #garden-selected-user-info,
+#garden-material-display-wrapper, #garden-material-addition-wrapper, #garden-selected-material-info {
     border: 1px solid rgb(134, 133, 133);
     width: 50%;
-    height: 450px;
+    height: 100%;
     border-radius: 5px;
     padding: 10px;
+    box-shadow: var(--shadow);
 }
 
-#garden-tool-addition-wrapper, #garden-user-addition-wrapper{
-    height: 50%;
+#garden-tool-addition-wrapper,
+#garden-user-addition-wrapper,
+#garden-material-addition-wrapper{
+    height: 60%;
     width: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-#garden-tool-dropbox, #garden-user-dropbox {
+#garden-tool-dropbox,
+#garden-user-dropbox,
+#garden-material-dropbox {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -72,7 +85,9 @@
     gap: 3px;
 }
 
-.garden-dropbox-tool, .garden-dropbox-user{
+.garden-dropbox-tool,
+.garden-dropbox-user,
+.garden-dropbox-material {
     width: 80px;
     height: 22px;
     border: 1px solid #ccc;
@@ -84,26 +99,38 @@
     transition: 0.1s;
 }
 
-.garden-dropbox-tool:hover, .garden-dropbox-user:hover {
+.garden-dropbox-tool:hover,
+.garden-dropbox-user:hover,
+.garden-dropbox-material:hover {
     cursor: pointer;
     background-color: var(--button-color);
 }
 
-#garden-selected-tool-info, #garden-selected-user-info {
+#garden-selected-tool-info,
+#garden-selected-user-info,
+#garden-selected-material-info {
     width: auto;
     height: 50%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
-#selected-tool-info-wrapper, #selected-user-info-wrapper{
+#selected-tool-info-wrapper,
+#selected-user-info-wrapper,
+#selected-material-info-wrapper {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-#selected-tool-info-wrapper span , #selected-user-info-wrapper span {
+#selected-material-info-wrapper {
+    gap: 0px
+}
+
+#selected-tool-info-wrapper span,
+#selected-user-info-wrapper span, 
+#selected-material-info-wrapper span {
     font-weight: 400;
 }
 
@@ -112,7 +139,9 @@
     overflow-y: scroll;
 }
 
-#second-column-tools, #second-column-users{
+#second-column-tools,
+#second-column-users, 
+#second-column-materials {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -124,7 +153,8 @@
     font-size: 13px;
 }
 
-#add-tool-button, #add-user-button, #remove-user-button, #remove-tool-button{
+#add-tool-button, #add-user-button, #add-material-button,
+#remove-user-button, #remove-tool-button, #remove-material-button {
     border: none;
     border-radius: 3px;
     padding: 3px;
@@ -132,7 +162,8 @@
     box-shadow: var(--shadow);
 }
 
-#add-tool-button:hover, #add-user-button:hover, #remove-user-button:hover, #remove-tool-button:hover {
+#add-tool-button:hover, #add-user-button:hover, #add-material-button:hover,
+#remove-user-button:hover, #remove-tool-button:hover, #remove-material-button:hover {
     background-color: var(--button-hover-color);
     cursor: pointer;
 }
@@ -152,30 +183,46 @@
     width: 100%;
 }
 
-#remove-user-button {
+#remove-user-button,
+#remove-tool-button,
+#remove-material-button {
     background-color: rgb(235, 49, 49);
     color: white;
 }
 
-#remove-user-button:hover {
+#remove-user-button:hover,
+#remove-tool-button:hover,
+#remove-material-button:hover {
     background-color: rgb(188, 42, 42);
     cursor: pointer;
 }
 
-#remove-tool-button {
-    background-color: rgb(235, 49, 49);
-    color: white;
-}
-
-#remove-tool-button:hover {
-    background-color: rgb(188, 42, 42);
-    cursor: pointer;
-}
-
-#tool-id {
+#tool-id, #material-id {
     display: none;
 }
 
+#garden-material-addition-wrapper {
+    gap: 3px;
+}
+
+#material-quantity-input {
+    width: 100px;
+}
+
+#selected-material-info-wrapper h5:last-child {
+    overflow-y: scroll;
+    max-height: 30px;
+}
+
+#material-description-input {
+    width: 100%;
+}
+
+#material-type-selection {
+    width: 150px;
+}
+
+#garden-data-wrapper 
 
 
 
