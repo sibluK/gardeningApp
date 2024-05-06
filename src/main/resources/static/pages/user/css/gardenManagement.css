@@ -35,20 +35,20 @@
     overflow-y: scroll;
 }
 
-#garden-tools-wrapper {
+#garden-tools-wrapper, #garden-users-wrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-#garden-tool-info-wrapper {
+#garden-tool-info-wrapper, #garden-user-info-wrapper {
     display: flex;
     flex-direction: row;
     gap: 20px;
-
 }
 
-#garden-tool-display-wrapper, #garden-tool-addition-wrapper, #garden-selected-tool-info {
+#garden-tool-display-wrapper, #garden-tool-addition-wrapper, #garden-selected-tool-info,
+#garden-user-display-wrapper, #garden-user-addition-wrapper, #garden-selected-user-info {
     border: 1px solid rgb(134, 133, 133);
     width: 50%;
     height: 450px;
@@ -56,7 +56,7 @@
     padding: 10px;
 }
 
-#garden-tool-addition-wrapper {
+#garden-tool-addition-wrapper, #garden-user-addition-wrapper{
     height: 50%;
     width: auto;
     display: flex;
@@ -64,7 +64,7 @@
     gap: 10px;
 }
 
-#garden-tool-dropbox {
+#garden-tool-dropbox, #garden-user-dropbox {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -72,10 +72,10 @@
     gap: 3px;
 }
 
-.garden-dropbox-tool {
+.garden-dropbox-tool, .garden-dropbox-user{
     width: 80px;
     height: 22px;
-    border: 2px solid var(--button-hover-color);
+    border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 12px;
     padding-left: 5px;
@@ -84,12 +84,12 @@
     transition: 0.1s;
 }
 
-.garden-dropbox-tool:hover {
+.garden-dropbox-tool:hover, .garden-dropbox-user:hover {
     cursor: pointer;
-    background-color: var(--button-hover-color);
+    background-color: var(--button-color);
 }
 
-#garden-selected-tool-info {
+#garden-selected-tool-info, #garden-selected-user-info {
     width: auto;
     height: 50%;
     display: flex;
@@ -97,13 +97,13 @@
     gap: 10px;
 }
 
-#selected-tool-info-wrapper {
+#selected-tool-info-wrapper, #selected-user-info-wrapper{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 3px;
 }
 
-#selected-tool-info-wrapper span {
+#selected-tool-info-wrapper span , #selected-user-info-wrapper span {
     font-weight: 400;
 }
 
@@ -112,19 +112,19 @@
     overflow-y: scroll;
 }
 
-#second-column {
+#second-column-tools, #second-column-users{
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 250px;
 }
 
-.tool-input-form input {
+.input-form input {
     width: 160px;
     font-size: 13px;
 }
 
-#add-tool-button {
+#add-tool-button, #add-user-button, #remove-user-button, #remove-tool-button{
     border: none;
     border-radius: 3px;
     padding: 3px;
@@ -132,17 +132,49 @@
     box-shadow: var(--shadow);
 }
 
-#add-tool-button:hover {
+#add-tool-button:hover, #add-user-button:hover, #remove-user-button:hover, #remove-tool-button:hover {
     background-color: var(--button-hover-color);
     cursor: pointer;
 }
 
-.tool-input-form textarea {
+.input-form textarea {
     max-height: 40px;
     max-width: 200px;
     font-size: 12px;
 }
 
+#selected-user-info-wrapper {
+    gap: 20px;
+}
+
+#user-name-input {
+    margin-top: 5px;
+    width: 100%;
+}
+
+#remove-user-button {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+#remove-user-button:hover {
+    background-color: rgb(188, 42, 42);
+    cursor: pointer;
+}
+
+#remove-tool-button {
+    background-color: rgb(235, 49, 49);
+    color: white;
+}
+
+#remove-tool-button:hover {
+    background-color: rgb(188, 42, 42);
+    cursor: pointer;
+}
+
+#tool-id {
+    display: none;
+}
 
 
 

@@ -7,6 +7,7 @@ import lt.viko.eif.nkulbis.gardeningApp.models.User;
 import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenRepository;
 import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenUsersRepository;
 import lt.viko.eif.nkulbis.gardeningApp.repositories.IUserRepository;
+import lt.viko.eif.nkulbis.gardeningApp.requests.AssignOrRemoveUserRequest;
 import lt.viko.eif.nkulbis.gardeningApp.requests.GardenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -100,4 +101,56 @@ public class GardenController {
                     .body("Failed to retrieve garden. Please try again later.");
         }
     }
+
+    @PostMapping(path = "/user/assign")
+    public ResponseEntity<?> assignUser(@RequestBody AssignOrRemoveUserRequest request) {
+        try {
+            Garden garden = gardenRepository.findById(request.getGardenId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Garden not found"));
+
+            User user = userRepository.findByUsername(request.getUsername())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+            GardenUsers gardenUsers = new GardenUsers();
+            gardenUsers.setGarden(garden);
+            gardenUsers.setUser(user);
+            GardenUsers savedGardenUsers = gardenUsersRepository.save(gardenUsers);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedGardenUsers);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Failed to find required entity: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to assign user to a garden. Please try again later.");
+        }
+    }
+
+    @PostMapping(path = "/user/remove")
+    public ResponseEntity<?> removeUser(@RequestBody AssignOrRemoveUserRequest request) {
+        try {
+
+            User user = userRepository.findByUsername(request.getUsername())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+            Garden garden = gardenRepository.findById(request.getGardenId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Garden not found"));
+
+            GardenUsers gardenUser = gardenUsersRepository.findByUserAndGarden(user, garden)
+                    .orElseThrow(() -> new ResourceNotFoundException("User not associated with this garden"));
+
+            gardenUsersRepository.delete(gardenUser);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("User removed from garden");
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Failed to find required entity: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to assign user to a garden. Please try again later.");
+        }
+    }
+
 }

@@ -85,4 +85,42 @@ public class ToolController {
         }
     }
 
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeTool(@RequestBody ToolRequest toolRequest) {
+        try {
+            Optional<Category> categoryOptional = categoryRepository.findById(toolRequest.getCategoryId());
+            Optional<Availability> availabilityOptional = availabilityRepository.findById(toolRequest.getAvailabilityId());
+            Optional<Garden> gardenOptional = gardenRepository.findById(toolRequest.getGardenId());
+
+            if (categoryOptional.isEmpty() || availabilityOptional.isEmpty() || gardenOptional.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Category, availability, or garden not found.");
+            }
+
+            Category category = categoryOptional.get();
+            Availability availability = availabilityOptional.get();
+            Garden garden = gardenOptional.get();
+
+            Tool tool = new Tool();
+            tool.setAvailability(availability);
+            tool.setCategory(category);
+            tool.setDescription(toolRequest.getDescription());
+            tool.setName(toolRequest.getName());
+            tool.setLastUsedDate(toolRequest.getLastUsedDate());
+            Tool savedTool = toolRepository.save(tool);
+
+            GardenTools gardenTools = new GardenTools();
+            gardenTools.setGarden(garden);
+            gardenTools.setTool(savedTool);
+            gardenToolsRepository.save(gardenTools);
+
+            return ResponseEntity.ok(savedTool);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to add tool. Please try again later.");
+        }
+    }
+
+
 }

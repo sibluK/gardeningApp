@@ -45,7 +45,7 @@
 
             <div id="garden-tool-info-wrapper">
                 <div id="garden-tool-display-wrapper">
-                    <h4>All Tools:</h4>
+                    <h4>Assigned Tools:</h4>
                     <div id="garden-tool-dropbox">
                         <div class="garden-dropbox-tool">Tool</div>
                         <div class="garden-dropbox-tool">Tool</div>
@@ -53,20 +53,19 @@
                         <div class="garden-dropbox-tool"></div>
                     </div>
                 </div>
-                <div id="second-column">
+                <div id="second-column-tools">
                     <div id="garden-tool-addition-wrapper">
                         <h4>Add Tool:</h4>
-                        <div class="tool-input-form">
+                        <div class="input-form">
                             <h5>Name: <input id="tool-name-input"></input></h5>
                         </div>
-                        <div class="tool-input-form">
+                        <div class="input-form">
                             <h5>Category:
                                 <select id="tool-category-selection">
-
                                 </select>
                             </h5>
                         </div>
-                        <div class="tool-input-form">
+                        <div class="input-form">
                             <h5>Description: <textarea id="description-text-area"></textarea></h5>
                         </div>
                         <button id="add-tool-button">Add</button>
@@ -74,18 +73,50 @@
                     <div id="garden-selected-tool-info">
                         <h4>Tool Information:</h4>
                         <div id="selected-tool-info-wrapper">
+                            <h5 id="tool-id">asdas</h5>
                             <h5>Name: <span id="tool-name"></span></h5>
                             <h5>Category: <span id="tool-category"></span></h5>
                             <h5>Availability: <span id="tool-availability"></span></h5>
                             <h5>Last used: <span id="tool-last-used-date"></span></h5>
                             <h5>Description: <span id="tool-description"></span></h5>
                         </div>
+                        <button id="remove-tool-button">Remove</button>
                     </div>
                 </div>
             </div>
         </div>
         <div id="garden-users-wrapper" class="garden-data-wrapper">
+            <h2>Garden Users</h2>
 
+            <div id="garden-user-info-wrapper">
+                <div id="garden-user-display-wrapper">
+                    <h4>Assigned Users: </h4>
+                    <div id="garden-user-dropbox">
+                        <div class="garden-dropbox-user">User</div>
+                        <div class="garden-dropbox-user">User</div>
+                        <div class="garden-dropbox-user">User</div>
+                    </div>
+                </div>
+                <div id="second-column-users">
+                    <div id="garden-user-addition-wrapper">
+                        <h4>Add User: </h4>
+                        <div class="input-form">
+                            <h5>Username: <input id="user-name-input"></input></h5>
+                        </div>
+                        <button id="add-user-button">Add</button>
+                    </div>
+                    <div id="garden-selected-user-info">
+                        <h4>User Information: </h4>
+                        <div id="selected-user-info-wrapper">
+                            <h5>Username: <span id="user-name"></span></h5>
+                            <h5>First Name: <span id="user-first-name"></span></h5>
+                            <h5>Last Name: <span id="user-last-name"></span></h5>
+                            <h5>Email: <span id="user-email"></span></h5>
+                        </div>
+                        <button id="remove-user-button">Remove</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="garden-materials-wrapper" class="garden-data-wrapper">
 
