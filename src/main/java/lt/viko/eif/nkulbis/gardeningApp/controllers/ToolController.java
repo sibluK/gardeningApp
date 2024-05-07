@@ -37,7 +37,7 @@ public class ToolController {
     @GetMapping(path = "/{gardenId}")
     public ResponseEntity<?> getToolsByGardenId(@PathVariable Long gardenId) {
         try {
-            List<GardenTools> gardenTools = gardenToolsRepository.findByGardenId(gardenId);
+            List<GardenTools> gardenTools = gardenToolsRepository.findAllByGardenId(gardenId);
 
             List<Tool> tools = gardenTools.stream()
                     .map(gardenTool -> gardenTool.getTool())

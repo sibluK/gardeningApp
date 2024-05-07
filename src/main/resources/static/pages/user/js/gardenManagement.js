@@ -33,7 +33,7 @@ document.getElementById('add-tool-button').addEventListener('click', function ()
         DisplayTools();
     })
     .catch(error => {
-        console.error('Error adding tool:', error);
+        console.error('Error adding tool: ', error);
     });
 });
 
@@ -53,7 +53,7 @@ document.getElementById('remove-tool-button').addEventListener('click', function
         DisplayTools();
     })
     .catch(error => {
-        console.error('Error removing user:', error);
+        console.error('Error removing tool: ', error);
     });
 });
 
@@ -73,7 +73,7 @@ document.getElementById('add-user-button').addEventListener('click', function() 
         DisplayUsers();
     })
     .catch(error => {
-        console.error('Error assigning user:', error);
+        console.error('Error assigning user: ', error);
     });
 });
 
@@ -93,7 +93,7 @@ document.getElementById('remove-user-button').addEventListener('click', function
         DisplayUsers();
     })
     .catch(error => {
-        console.error('Error removing user:', error);
+        console.error('Error removing user: ', error);
     });
 });
 
@@ -120,7 +120,7 @@ document.getElementById('add-material-button').addEventListener('click', functio
         DisplayMaterials();
     })
     .catch(error => {
-        console.error('Error assigning material:', error);
+        console.error('Error assigning material: ', error);
     });
 });
 
@@ -140,8 +140,18 @@ document.getElementById('remove-material-button').addEventListener('click', func
         DisplayMaterials();
     })
     .catch(error => {
-        console.error('Error removing material:', error);
+        console.error('Error removing material: ', error);
     });
+});
+
+document.getElementById('delete-garden-button').addEventListener('click', function() {
+    fetchDeleteGarden(gardenId)
+        .then(data => {
+            window.location.assign(`/pages/user/html/gardens.html`);
+        })
+        .catch(error => {
+            console.error(`Error removing garden: `, error)
+        })
 });
 
 
@@ -460,13 +470,32 @@ function fetchAssignedMaterials(gardenId) {
     return fetch(`/material/${gardenId}`)
         .then(response => {
             if(!response.ok) {
-
                 throw new Error('Failed to fetch garden materials');
             }
             return response.json();
         })
         .then(tools => {
             return tools;
+        });
+}
+
+function fetchDeleteGarden(gardenId) {
+    return fetch(`/garden/delete/${gardenId}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to delete garden');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Garden removed:', data)
+            return data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            throw error;
         });
 }
 

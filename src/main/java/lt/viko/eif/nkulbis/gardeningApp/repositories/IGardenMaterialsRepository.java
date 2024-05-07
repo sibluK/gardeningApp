@@ -13,5 +13,6 @@ import java.util.Optional;
 public interface IGardenMaterialsRepository extends JpaRepository<GardenMaterials, Long> {
     Optional<GardenMaterials> getByGardenAndMaterial(Garden garden, Material material);
 
-    List<GardenMaterials> findByGardenId(Long gardenId);
+    List<GardenMaterials> findAllByGardenId(Long gardenId);
+
 }

@@ -77,7 +77,7 @@ public class UserController {
     @GetMapping(path = "/assigned/{gardenId}")
     public ResponseEntity<?> getUsersByGardenId(@PathVariable Long gardenId) {
         try {
-            List<GardenUsers> gardenUsers = gardenUsersRepository.findByGardenId(gardenId);
+            List<GardenUsers> gardenUsers = gardenUsersRepository.findAllByGardenId(gardenId);
 
             List<User> users = gardenUsers.stream()
                     .map(gardenUser -> gardenUser.getUser())

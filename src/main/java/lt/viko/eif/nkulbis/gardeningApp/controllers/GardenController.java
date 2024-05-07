@@ -1,12 +1,9 @@
 package lt.viko.eif.nkulbis.gardeningApp.controllers;
 
+import jakarta.transaction.Transactional;
 import lt.viko.eif.nkulbis.gardeningApp.exceptions.ResourceNotFoundException;
-import lt.viko.eif.nkulbis.gardeningApp.models.Garden;
-import lt.viko.eif.nkulbis.gardeningApp.models.GardenUsers;
-import lt.viko.eif.nkulbis.gardeningApp.models.User;
-import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenRepository;
-import lt.viko.eif.nkulbis.gardeningApp.repositories.IGardenUsersRepository;
-import lt.viko.eif.nkulbis.gardeningApp.repositories.IUserRepository;
+import lt.viko.eif.nkulbis.gardeningApp.models.*;
+import lt.viko.eif.nkulbis.gardeningApp.repositories.*;
 import lt.viko.eif.nkulbis.gardeningApp.requests.AssignOrRemoveUserRequest;
 import lt.viko.eif.nkulbis.gardeningApp.requests.CreateGardenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +21,28 @@ public class GardenController {
 
     @Autowired
     private IGardenRepository gardenRepository;
-
     @Autowired
     private IUserRepository userRepository;
-
+    @Autowired
+    private IMaterialRepository materialRepository;
+    @Autowired
+    private IToolRepository toolRepository;
     @Autowired
     private IGardenUsersRepository gardenUsersRepository;
+    @Autowired
+    private IGardenMaterialsRepository gardenMaterialsRepository;
+    @Autowired
+    private IGardenToolsRepository gardenToolsRepository;
+    @Autowired
+    private IGardenPlantsRepository gardenPlantsRepository;
+    @Autowired
+    private ITaskRepository taskRepository;
+    @Autowired
+    private ITaskUsersRepository taskUsersRepository;
+    @Autowired
+    private ITaskMaterialsRepository taskMaterialsRepository;
+    @Autowired
+    private ITaskToolsRepository taskToolsRepository;
 
     @PostMapping(path = "/create")
     public ResponseEntity<?> createNewGarden(@RequestBody CreateGardenRequest request) {
@@ -153,4 +166,44 @@ public class GardenController {
         }
     }
 
+    @Transactional
+    @DeleteMapping(path = "/delete/{gardenId}")
+    public ResponseEntity<?> deleteGardenById(@PathVariable Long gardenId) {
+        try {
+            Garden garden = gardenRepository.findById(gardenId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Garden not found with this id"));
+            List<GardenMaterials> gardenMaterials = gardenMaterialsRepository.findAllByGardenId(gardenId);
+            List<GardenTools> gardenTools = gardenToolsRepository.findAllByGardenId(gardenId);
+            List<GardenUsers> gardenUsers = gardenUsersRepository.findAllByGardenId(gardenId);
+            List<GardenPlants> gardenPlants = gardenPlantsRepository.findAllByGardenId(gardenId);
+            List<Task> tasks = taskRepository.findAllByGardenId(gardenId);
+
+            for(Task task : tasks) {
+                taskMaterialsRepository.deleteByTask(task);
+                taskUsersRepository.deleteByTask(task);
+                taskToolsRepository.deleteByTask(task);
+            }
+
+            for(GardenMaterials gardenMaterial : gardenMaterials) {
+                materialRepository.deleteById(gardenMaterial.getMaterial().getId());
+            }
+            gardenMaterialsRepository.deleteAll(gardenMaterials);
+
+            for(GardenTools gardenTool : gardenTools) {
+                toolRepository.deleteById(gardenTool.getTool().getId());
+            }
+            gardenToolsRepository.deleteAll(gardenTools);
+
+            gardenPlantsRepository.deleteAll(gardenPlants);
+            gardenUsersRepository.deleteAll(gardenUsers);
+            return ResponseEntity.status(HttpStatus.OK).body("Garden and it's entities removed");
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Failed to find required entity: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to remove garden. Please try again later.");
+        }
+    }
 }

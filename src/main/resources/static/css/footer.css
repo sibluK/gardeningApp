@@ -3,6 +3,7 @@
     bottom: 0;
     width: 100%;
     background: linear-gradient(0deg, rgba(36,130,0,1) 18%, rgba(78,221,53,1) 63%);
+    background: #ccc;
     padding: 20px;
     text-align: center;
     border-top: 1px solid rgb(209, 195, 195);

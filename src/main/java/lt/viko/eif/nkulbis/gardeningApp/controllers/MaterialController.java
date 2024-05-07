@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -30,7 +29,7 @@ public class MaterialController {
     @GetMapping(path = "/{gardenId}")
     public ResponseEntity<?> getMaterialsByGardenId(@PathVariable Long gardenId) {
         try {
-            List<GardenMaterials> gardenMaterials = gardenMaterialsRepository.findByGardenId(gardenId);
+            List<GardenMaterials> gardenMaterials = gardenMaterialsRepository.findAllByGardenId(gardenId);
 
             List<Material> materials = gardenMaterials.stream()
                     .map(gardenMaterial -> gardenMaterial.getMaterial())
