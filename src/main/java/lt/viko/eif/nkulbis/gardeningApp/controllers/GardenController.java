@@ -166,6 +166,24 @@ public class GardenController {
         }
     }
 
+    @GetMapping(path = "/all/number/{userId}")
+    public ResponseEntity<?> getNumberOfGardensByUserId(@PathVariable Long userId) {
+        try {
+            List<GardenUsers> gardenUsers = gardenUsersRepository.findByUserId(userId);
+            int numberOfGardensForUser = gardenUsers.size();
+
+            return ResponseEntity.status(HttpStatus.OK).body(numberOfGardensForUser);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Failed to find required entity: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to fetch number of gardens. Please try again later.");
+        }
+    }
+
+
     @Transactional
     @DeleteMapping(path = "/delete/{gardenId}")
     public ResponseEntity<?> deleteGardenById(@PathVariable Long gardenId) {

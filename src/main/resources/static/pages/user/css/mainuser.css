@@ -1,0 +1,38 @@
+#user-info-cards-wrapper {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    padding: 30px;
+    justify-content: space-between;
+}
+
+.info-number {
+    font-size: 90px;
+}
+
+.check-button {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    border: none;
+    transition: 0.1s;
+}
+
+.check-button:hover {
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+}

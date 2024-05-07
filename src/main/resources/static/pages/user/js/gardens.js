@@ -39,7 +39,7 @@ gardenCreationWindow.querySelector('.create-garden-button').addEventListener('cl
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    //On page load fetching the gardens of the user
+    //On page load, fetching the gardens of the user
     fetch(`/garden/gardens?userId=${userId}`)
         .then(response => {
             if (!response.ok) {
