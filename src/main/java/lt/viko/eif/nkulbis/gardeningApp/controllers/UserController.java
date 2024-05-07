@@ -74,12 +74,13 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/assigned/{gardenId}")
-    public ResponseEntity<?> getUsersByGardenId(@PathVariable Long gardenId) {
+    @GetMapping(path = "/assigned/{gardenId}/{userId}")
+    public ResponseEntity<?> getUsersByGardenId(@PathVariable Long gardenId, @PathVariable Long userId) {
         try {
             List<GardenUsers> gardenUsers = gardenUsersRepository.findAllByGardenId(gardenId);
 
             List<User> users = gardenUsers.stream()
+                    .filter(gardenUser -> !gardenUser.getUser().getId().equals(userId))
                     .map(gardenUser -> gardenUser.getUser())
                     .collect(Collectors.toList());
 
@@ -90,5 +91,4 @@ public class UserController {
                     .body("Failed to retrieve tools. Please try again later.");
         }
     }
-
 }

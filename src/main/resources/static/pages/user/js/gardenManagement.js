@@ -1,9 +1,9 @@
 const gardenInfoWrapper = document.getElementById('garden-information-wrapper');
 const urlParams = new URLSearchParams(window.location.search);
 const gardenId = urlParams.get('gardenId');
+const userId = localStorage.getItem('userId');
 
 document.addEventListener('DOMContentLoaded', function() {
-
     DisplayGardenData();
     DisplayTools();
     DisplayUsers();
@@ -453,10 +453,9 @@ function fetchCategories() {
 }
 
 function fetchAssignedUsers(gardenId) {
-    return fetch(`/user/assigned/${gardenId}`)
+    return fetch(`/user/assigned/${gardenId}/${userId}`)
         .then(response => {
             if(!response.ok) {
-
                 throw new Error('Failed to fetch garden users');
             }
             return response.json();

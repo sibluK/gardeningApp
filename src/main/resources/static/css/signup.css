@@ -36,10 +36,7 @@ button {
 
 .sign-up-content {
     display: flex;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -60%);
+    padding: 50px;
 }
 
 .sign-up-wrapper h2 {
