@@ -34,6 +34,7 @@
 #garden-information-wrapper h4:last-child {
     max-height: 130px;
     overflow-y: scroll;
+    max-width: 260px;
 }
 
 #delete-garden-button {
