@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     DisplayTools();
     DisplayUsers();
     DisplayMaterials();
+    DisplayPlants();
     DisplayCategories();
 });
 
@@ -154,6 +155,35 @@ document.getElementById('delete-garden-button').addEventListener('click', functi
         })
 });
 
+document.getElementById('remove-plant-button').addEventListener('click', function() {
+    const formData = {
+        gardenId: gardenId,
+        plantId: document.getElementById('plant-id').innerText
+    };
+
+    const jsonData = JSON.stringify(formData);
+
+    fetchRemovePlant('/plant/remove', 'POST', {
+        'Content-Type': 'application/json'
+    }, jsonData)
+    .then(data => {
+        refreshSelectedPlantInfo();
+        DisplayPlants();
+    })
+    .catch(error => {
+        console.error('Error removing plant: ', error);
+    });
+});
+
+function refreshSelectedPlantInfo() {
+    document.getElementById('plant-id').innerText = '';
+    document.getElementById('plant-name').innerText = ''
+    document.getElementById('plant-description').innerText = '';
+    document.getElementById('plant-care-instructions').innerText = '';
+    document.getElementById('plant-type').innerText = '';
+    document.getElementById('plant-species').innerText = '';
+}
+
 
 function refreshSelectedToolInfo() {
     document.getElementById('tool-id').innerText = '';
@@ -178,6 +208,32 @@ function refreshSelectedMaterialInfo() {
     document.getElementById('material-unit').innerText = '';
     document.getElementById('material-expiration-date').innerText = '';
     document.getElementById('material-description').innerText = '';
+}
+
+function DisplayPlants() {
+    fetchAssignedPlants(gardenId)
+    .then(plants => {
+        console.log(plants);
+
+        const plantDropbox = document.getElementById('garden-plant-dropbox');
+        plantDropbox.innerHTML = '';
+
+        plants.forEach(plant => {
+            const plantDiv = document.createElement('div');
+            plantDiv.setAttribute('class', 'garden-dropbox-plant');
+            plantDiv.innerText = plant.name;
+            plantDropbox.appendChild(plantDiv);
+
+            plantDiv.addEventListener('click', function() {
+                document.getElementById('plant-id').innerText = plant.id;
+                document.getElementById('plant-name').innerText = plant.name;
+                document.getElementById('plant-description').innerText = plant.description;
+                document.getElementById('plant-care-instructions').innerText = plant.instructions;
+                document.getElementById('plant-type').innerText = plant.type.type;
+                document.getElementById('plant-species').innerText = plant.species.name;
+            });
+        })
+    })
 }
 
 function DisplayMaterials() {
@@ -413,6 +469,28 @@ function fetchRemoveMaterial(url, method, headers, body) {
     });
 }
 
+function fetchRemovePlant(url, method, headers, body) {
+    return fetch(url, {
+        method: method,
+        headers: headers,
+        body: body
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Plant removed from garden:', data)
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        throw error;
+    });
+}
+
 function fetchGarden(gardenId) {
     return fetch(`/garden/${gardenId}`)
         .then(response => {
@@ -475,6 +553,19 @@ function fetchAssignedMaterials(gardenId) {
         })
         .then(tools => {
             return tools;
+        });
+}
+
+function fetchAssignedPlants(gardenId) {
+    return fetch(`/plant/${gardenId}`)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Failed to fetch garden plants');
+            }
+            return response.json();
+        })
+        .then(plants => {
+            return plants;
         });
 }
 

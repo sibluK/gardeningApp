@@ -1,6 +1,6 @@
 package lt.viko.eif.nkulbis.gardeningApp.requests;
 
-public class AssignPlantToGardenRequest {
+public class AssignOrRemovePlantToGardenRequest {
     private Long gardenId;
     private Long plantId;
 
