@@ -6,6 +6,8 @@
     --button-color: rgb(55, 225, 72);
     --button-hover-color: rgb(45, 177, 58);
     --shadow: 0px 10px 13px -5px rgba(0,0,0,0.1);
+    --cancel-color: rgb(235, 49, 49);
+    --cancel-hover: rgb(188, 42, 42);
   }
 
 * {

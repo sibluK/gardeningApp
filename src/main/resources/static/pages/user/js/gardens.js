@@ -109,9 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
         })
-        .catch(error => {
-            console.error('Error fetching gardens:', error);
-        });
+
 });
 
 function createNewGardenCardWithPlusIcon() {
